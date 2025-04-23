@@ -1,0 +1,17 @@
+TODO
+
+[x] Planets Spacing, how far apart!
+    [x] Make planets' path elliptical vs strictly circular
+    [x] Pass as ratio of canvas to body object, not pixels
+    [x] Finalize Ratio between each planet - Log actual ratio?
+
+[ ] Text
+    [x] Display text on screen
+    [x] Map angle of progress around sun accurately
+    [ ] Percentage < 10, add leading zero, always two digits
+    [ ] Leading Zeroes, Orbit Count 5 digits, Percentage 2 digits, Countdown 3.2 digits
+    [ ] Artist info or something in top right, maybe real time clock? Current date down to millisecond?
+    [ ] Space vertically and horizontally by percentage, both bounding and space between lines
+
+    [ ] Align bottom right, 3 stacked blocks of text, offset orbits towards left.
+
