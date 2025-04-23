@@ -1,7 +1,7 @@
 let objects = [];
 let stars = [];
-
 let font;
+
 const fps = 60;
 const secondsPerFrame = 1 / fps;
 const bpm = 90;
@@ -9,7 +9,7 @@ const bpm = 90;
 // 60frames_second / 1.5beats_second = 40 frames_beat
 const framesPerBeat = 60 / (bpm / 60);
 
-/* offset all orbits */
+/* offset all orbits, change in setup() */
 let orbitOffsetX;
 let orbitOffsetY;
 
@@ -21,41 +21,36 @@ let h = window.innerHeight;
 // let w = 1920;
 // let h = 1200; 
 
-/* Media Wall Quarter Res*/
-// let w = 600;
-// let h = 960;
-
 function setup() {
     createCanvas(w, h);
     frameRate(fps);
     angleMode(RADIANS);
-    // font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
     font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
     
     const halfw = width/2;
     const halfh = height/2;
     
-    /* offset all orbits */
+    /* offset all orbits, within setup to enable width & height math */
     orbitOffsetX = 0;
     orbitOffsetY = 0;
 
     // "...,you must first create the universe."
     // name, color, size, orbitW, orbitH, offsetX, offsetY, orbitSpeed
     objects.push(new Body('Sol', color(255), 294.118, 0, 0, 0, 0, 0));
-    // Create objects - Inner System
+    /* Create objects - Inner System */
     objects.push(new Body('Mercury', color(200), 1, halfw * 0.05, halfh * 0.05, 0, 0, 1));
     objects.push(new Body('Venus', color(200), 2.529, halfw * 0.075, halfh * 0.075, 0, 0, 2.5));
     objects.push(new Body('Earth', color(200), 2.676, halfw * 0.1, halfh * 0.1, 0, 0, 4));
     objects.push(new Body('Mars', color(200), 1.412, halfw * 0.125, halfh * 0.125, 0, 0, 7.75));
-    // Create Planets - Asteroid Belt
+    /* Create Planets - Asteroid Belt */
     objects.push(new Body('4 Vesta', color(200), 0.108, halfw * 0.3, halfh * 0.3, 0, 0, 15));
     objects.push(new Body('Ceres', color(200), 0.471, halfw * 0.325, halfh * 0.325, 0, 0, 19));
-    // Create Planets - Outer System
+    /* Create Planets - Outer System */
     objects.push(new Body('Jupiter', color(200), 29.412, halfw * 0.45, halfh * 0.45, 0, 0, 47));
     objects.push(new Body('Saturn', color(200), 24.706, halfw * 0.55, halfh * 0.55, 0, 0, 123));
     objects.push(new Body('Uranus', color(200), 10, halfw * 0.65, halfh * 0.65, 0, 0, 351));
     objects.push(new Body('Neptune', color(200), 9.1, halfw * 0.77, halfh * 0.77, 0, 0, 684));
-    // Create Planets - Kuiper Belt
+    /* Create Planets - Kuiper Belt */
     objects.push(new Body('Pluto', color(200), 0.487, halfw * 0.95, halfh * 0.95, 0, 0, 1032.75));
 }
 
@@ -65,7 +60,8 @@ function draw() {
     background(0,0,0); // no streak
     stroke(255,55);
 
-    // 1080frames:36sec, 10800:6minutes, 21600:12
+    /* p5 capture settings, uncomment in index.html to enable */
+    // @30fps - 1080frames:36sec, 10800:6minutes, 21600:12
     // if (frameCount === 1) {
     //     const capture = P5Capture.getInstance();
     //     capture.start({
@@ -75,10 +71,11 @@ function draw() {
     //     });
     // }
 
+    /* Terminator line */
     // push();
     // translate(width/2,height/2);
     // stroke(255);
-    // line(0,0,width,0);
+    // line(orbitOffsetX,orbitOffsetY,width,orbitOffsetY);
     // pop();
 
     /* apply updates to all planets */
@@ -90,6 +87,7 @@ function draw() {
         planet.update();
     });
 
+    /* Halt animation after num of frames */
     // if (frameCount >= 10)
     //     noLoop();
 }
@@ -109,7 +107,7 @@ function draw() {
    Pluto   | 1032.75                  |            | 4345       | 0.487 
 */
 
-// Sphere class to represent sol and any orbiting body
+/* (Stellar) Body class to represent sol, the planets, and orbiting objects */
 class Body {
     constructor(name, col, size, a, b, cx = 0, cy = 0, orbitSpeed = 0) {
         this.name = name;
