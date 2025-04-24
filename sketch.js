@@ -31,7 +31,7 @@ function setup() {
     const halfh = height/2;
     
     /* offset all orbits, within setup to enable width & height math */
-    orbitOffsetX = 0;
+    orbitOffsetX = -(width * 0.1);
     orbitOffsetY = 0;
 
     // "...,you must first create the universe."
@@ -233,10 +233,12 @@ class Body {
         }
         let timeText = 'Countdown: ' + leadingZeroes + this.remainingTimeSeconds.toFixed(2); //TODO
 
+        textX = width * 0.8;
+        textY = textY + 120;
         text(nameText + timeText, textX, textY); // top left
-        textY = textY + height * 0.775;
+        textY = textY + 157;
         text(nameText + orbitText, textX, textY); // bottom left
-        textX = width * 0.825;
+        textY = textY + 157;
         text(nameText + progressText, textX, textY); // bottom right
         pop();
     }
