@@ -6,29 +6,6 @@ For more information see:
 * https://github.com/ryanoasis/nerd-fonts/
 * https://github.com/ryanoasis/nerd-fonts/releases/latest/
 
-           _ Ä --- Ä                  _ Ä --- Ä
-        .ù"    ,Â,   ~=Ò_    .ù.   .ù"          ~=Ò_
-      .    . .OZZZO¸    ^g,      .    .þø~øþ.      ^%·   .s%ZO¿
-          `  À¦qZp¦' øù  `Z,         `        _.,ú  `gZ¿  ù:ZZ|
-      _Âg%%oc,  ~ _.,  `  ÔZ;         _.,Â©y%Z=-:ú .s%Z%L, `OZZYi%gÂ_
-     jOZZ˜˜ZZOLú jOZZ˜ª,  `Zb  _.Â©y%ZZZZZZZZ%=:ù jZZZZZZZb `ZZZZ˜ZZZb
-    ùZZ?~ ~\ZZZ| |›ZZZZO\ ú?Z.ù%˜ZZZZZZ¦*Êü^ø"`' /ZZ¦"~"¦ZZ\ ùT   ~!ZZ´
-     Z6f   ùZZZOùú|ZZZ^ZZi ]Z1ú:-":ZZZ'      _. ùOZ/     \ZZL :    |6Z'
- .   `ZZª._ ~"^Z| ùZZZ;\ZZ ÆZµ   ú›ZZZú  _Â%ZZú l%! .oZo, ]ZZúù  _ÒZZ'   .
-  ,    ~^Ê*Ê^~.Z›úúZZZl ZZÂZZ1 ú ùZZZZù  ^¦!ZZù :=l dZZZb ùZZ|  ~^"~
-   ù        g%ZZZúúZZZZ `ZZZø : úZZZZ:   ùlZZ| ù;ù :ZZZF úZZ|         .'
-    ~Ä_    úZZZZ| ùZZZZ  ÀZZ˜' ù  ?ZZZ!    :ZZ³ú úù  "¦"  dZgú      _Ä~
-       ~"^ :ZZZOùù|ZZZ!   `^'  '  `ZZZ    ú¦ZZ:  ú     ./ZZf úÄ--`~
-           OZZZù jZ¦Ê~  `. _ _. .   ~^¦L, YZZZZOzzÂÂ úù:=CO/
-     -V!  j¦Ê^~     .     ~-ºù-~    .     `^Ê¦Z˜ZF'úù:%CG' . O R G
-                     ~Ä_    T    _Ä~             ~'  '^"~
-                        ~"Í=|=Í"~
-                            ù
-                            ú
-                   .--------------------------------ú  ú
-                   :  B I G B L U E   T E R M I N A L  :
-                   ú  ú--------------------------------'
-
                 An oldschool fixed-width pixel font / v1.00
 
 
