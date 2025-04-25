@@ -1,6 +1,7 @@
 let objects = [];
 let stars = [];
 
+let song;
 let font;
 const fps = 60;
 const secondsPerFrame = 1 / fps;
@@ -25,6 +26,12 @@ let h = window.innerHeight;
 // let w = 600;
 // let h = 960;
 
+/* load song file before sketch */
+function preload() {
+    song = loadSound('Music/ThePlanetsDraft02.mp3');
+}
+
+/* run once before sketch renders */
 function setup() {
     createCanvas(w, h);
     frameRate(fps);
@@ -58,6 +65,7 @@ function setup() {
     objects.push(new Body('Pluto', color(200), 0.487, halfw * 0.95, halfh * 0.95, 0, 0, 1032.75));
 }
 
+/* run once every frame */
 function draw() {
 
     // background(0,0,0,50); // streak
@@ -92,6 +100,21 @@ function draw() {
     // if (frameCount >= 10)
     //     noLoop();
 }
+
+function keyPressed() {
+    if (key == 'space'){
+        if (song.isPlaying()) {
+            // .isPlaying() returns a boolean
+            song.stop();
+            noLoop();
+            background(255, 0, 0);
+          } else {
+            song.play();
+            background(0, 255, 0);
+            setup();
+          }
+    }
+  }
 
 /* name    | Orbital Period n:Mercury | Diameter M | Distance M | Diameter Scale n:Mercury
    Sun     | 0                        | 1          | 0          | 294.118
