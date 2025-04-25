@@ -14,21 +14,27 @@ let orbitOffsetX;
 let orbitOffsetY;
 
 /* fullscreen */
-let w = window.innerWidth;
-let h = window.innerHeight; 
+// let w = window.innerWidth;
+// let h = window.innerHeight; 
 
 /* Media Wall Full Res*/
 // let w = 1920;
-// let h = 1200; 
+// let h = 1200;
 
+/* 1080p */
+let w = 1920;
+let h = 1080;
+
+/* run once before the sketch */
+function preload() {
+    font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
+}
+
+/* run once at the start of the sketch */
 function setup() {
     createCanvas(w, h);
     frameRate(fps);
     angleMode(RADIANS);
-    font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
-    
-    const halfw = width/2;
-    const halfh = height/2;
     
     /* offset all orbits, within setup to enable width & height math */
     orbitOffsetX = -(width * 0.1);
@@ -38,22 +44,23 @@ function setup() {
     // name, color, size, orbitW, orbitH, offsetX, offsetY, orbitSpeed
     objects.push(new Body('Sol', color(255), 294.118, 0, 0, 0, 0, 0));
     /* Create objects - Inner System */
-    objects.push(new Body('Mercury', color(200), 1, halfw * 0.05, halfh * 0.05, 0, 0, 1));
-    objects.push(new Body('Venus', color(200), 2.529, halfw * 0.075, halfh * 0.075, 0, 0, 2.5));
-    objects.push(new Body('Earth', color(200), 2.676, halfw * 0.1, halfh * 0.1, 0, 0, 4));
-    objects.push(new Body('Mars', color(200), 1.412, halfw * 0.125, halfh * 0.125, 0, 0, 7.75));
+    objects.push(new Body('Mercury', color(200), 1, width / 2 * 0.05, height / 2 * 0.05, 0, 0, 1));
+    objects.push(new Body('Venus', color(200), 2.529, width / 2 * 0.075, height / 2 * 0.075, 0, 0, 2.5));
+    objects.push(new Body('Earth', color(200), 2.676, width / 2 * 0.1, height / 2 * 0.1, 0, 0, 4));
+    objects.push(new Body('Mars', color(200), 1.412, width / 2 * 0.125, height / 2 * 0.125, 0, 0, 7.75));
     /* Create Planets - Asteroid Belt */
-    objects.push(new Body('4 Vesta', color(200), 0.108, halfw * 0.3, halfh * 0.3, 0, 0, 15));
-    objects.push(new Body('Ceres', color(200), 0.471, halfw * 0.325, halfh * 0.325, 0, 0, 19));
+    objects.push(new Body('4 Vesta', color(200), 0.108, width / 2 * 0.3, height / 2 * 0.3, 0, 0, 15));
+    objects.push(new Body('Ceres', color(200), 0.471, width / 2 * 0.325, height / 2 * 0.325, 0, 0, 19));
     /* Create Planets - Outer System */
-    objects.push(new Body('Jupiter', color(200), 29.412, halfw * 0.45, halfh * 0.45, 0, 0, 47));
-    objects.push(new Body('Saturn', color(200), 24.706, halfw * 0.55, halfh * 0.55, 0, 0, 123));
-    objects.push(new Body('Uranus', color(200), 10, halfw * 0.65, halfh * 0.65, 0, 0, 351));
-    objects.push(new Body('Neptune', color(200), 9.1, halfw * 0.77, halfh * 0.77, 0, 0, 684));
+    objects.push(new Body('Jupiter', color(200), 29.412, width / 2 * 0.45, height / 2 * 0.45, 0, 0, 47));
+    objects.push(new Body('Saturn', color(200), 24.706, width / 2 * 0.55, height / 2 * 0.55, 0, 0, 123));
+    objects.push(new Body('Uranus', color(200), 10, width / 2 * 0.65, height / 2 * 0.65, 0, 0, 351));
+    objects.push(new Body('Neptune', color(200), 9.1, width / 2 * 0.77, height / 2 * 0.77, 0, 0, 684));
     /* Create Planets - Kuiper Belt */
-    objects.push(new Body('Pluto', color(200), 0.487, halfw * 0.95, halfh * 0.95, 0, 0, 1032.75));
+    objects.push(new Body('Pluto', color(200), 0.487, width / 2 * 0.95, height / 2 * 0.95, 0, 0, 1032.75));
 }
 
+/* run once every frame */
 function draw() {
 
     // background(0,0,0,50); // streak
@@ -81,8 +88,7 @@ function draw() {
     /* apply updates to all planets */
     objects.forEach(planet => { // Render objects
         planet.display_orbit();
-        // if (random() > 0.7 )
-            planet.display();
+        planet.display();
         planet.display_text();
         planet.update();
     });
@@ -155,13 +161,13 @@ class Body {
     /* display elliptical orbit, fill when body completes orbit */
     display_orbit() {
         push();
-        translate(width/2, height/2); // center screen
+        translate(width / 2, height / 2); // center screen
         noFill();
         /* noFill until first full orbit */
         if (this.orbitCount > 0)
             fill(255, map(this.angle, 0, TWO_PI, 55, 0)); //no streak
             // fill(255, map(this.angle, 0, TWO_PI, 15, 0)); // streak
-        stroke(255,75); // no streak
+        stroke(255,95); // no streak
         // stroke(255,20); //streak
         ellipse(this.cx, this.cy, this.a * 2, this.b * 2);
         pop();
@@ -197,9 +203,16 @@ class Body {
             default: textY = height + 100; // offscreen anything else
         }
 
-        fill(185); //TODO TEST
-        textFont(font); //TODO TEST
-        textSize(13); //TODO TEST
+        fill(185); // off white
+        textFont(font);
+        const fontSize = 17;
+        textSize(fontSize);
+
+        const lineHeight = fontSize * 0.75;
+        const textBlockHeight = (objects.length - 1) * lineHeight;
+
+        const index = (element) => element.name = this.name;
+        console.log(this.name + ': ' + objects.findIndex(index));
 
         let nameText = '> ' + this.name + '';
         nameText = nameText.padEnd(11, ' ');
@@ -231,15 +244,25 @@ class Body {
         } if (this.remainingTimeSeconds < 10) {
             leadingZeroes = '00';
         }
-        let timeText = 'Countdown: ' + leadingZeroes + this.remainingTimeSeconds.toFixed(2); //TODO
+        let timeText = 'Countdown: ' + leadingZeroes + this.remainingTimeSeconds.toFixed(2);
 
         textX = width * 0.8;
         textY = textY + 120;
-        text(nameText + timeText, textX, textY); // top left
+        text(nameText + timeText, textX, textY);
         textY = textY + 157;
-        text(nameText + orbitText, textX, textY); // bottom left
+        text(nameText + orbitText, textX, textY);
         textY = textY + 157;
-        text(nameText + progressText, textX, textY); // bottom right
+        text(nameText + progressText, textX, textY);
+
+        //TODO TEST
+        // if (this.name == 'Pluto'){
+        //     text(nameText + progressText, textX, textY); // bottom right
+        //     strokeWeight(2);
+        //     stroke(255);
+        //     point(textX - 5,textY);
+        //     point(textX - 5,textY - (fontSize * 0.75));
+        // }
+
         pop();
     }
 
