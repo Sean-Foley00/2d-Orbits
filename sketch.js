@@ -48,35 +48,15 @@ function draw() {
     //     });
     // }
 
-    // push();
-    // translate(width/2,height/2);
-    // stroke(255);
-    // line(0,0,width,0);
-    // pop();
-
     /* apply updates to all planets */
     objects.forEach(planet => { // Render objects
         planet.display_orbit();
-        // if (random() > 0.7 )
-            planet.display();
+        planet.display();
         planet.display_text();
         planet.update();
     });
-
-    // if (frameCount >= 10)
-    //     noLoop();
 }
 
-// function mousePressed() {
-//     if (song.isPlaying()) {
-//         song.stop();
-//         noLoop();
-//     } else {
-//         loop();
-//         song.play();
-//         resetSketch();
-//     }
-// }
 
 function resetSketch() {
     frameRate(fps);
@@ -130,14 +110,13 @@ class Body {
         this.size = log(size + 2) * 3.5; // body diameter
 
         this.a = a * 0.8; // width radius
-        // this.a = b * 1.50;
         this.b = b * 0.9; // height radius
         this.cx = cx + orbitOffsetX; // center of orbit
         this.cy = cy + orbitOffsetY; // center of orbit
 
         this.orbitSpeed = TWO_PI/(orbitSpeed * framesPerBeat); // degrees of rotation each frame
         this.angle = 0; // cumulative angle change
-        // this.angle = random(TWO_PI); //TODO TESTING
+        this.angle = random(TWO_PI); //TODO
 
         this.orbitCount = 0;
         this.totalTimeSeconds = this.calc_total_time_seconds();
@@ -174,10 +153,8 @@ class Body {
         noFill();
         /* noFill until first full orbit */
         if (this.orbitCount > 0)
-            fill(255, map(this.angle, 0, TWO_PI, 55, 0)); //no streak
-            // fill(255, map(this.angle, 0, TWO_PI, 15, 0)); // streak
+            fill(255, map(this.angle, 0, TWO_PI, 75, 0)); //no streak
         stroke(255,75); // no streak
-        // stroke(255,20); //streak
         ellipse(this.cx, this.cy, this.a * 2, this.b * 2);
         pop();
     }
@@ -285,15 +262,3 @@ cx & cy = offset for center point
 Source: https://www.mathopenref.com/coordparamellipse.html
 
 */
-
-  /* "Film Grain" */
-    // push();
-    // fill(255);
-    // stroke(255,130);
-    // strokeWeight(2);
-    // for (let i = 0; i < 4; i++)
-    //     point(random(width),random(height));
-    // textSize(1);
-    // text('Science Rules',random(width),random(height));
-    // text('Papo Pepo',random(width),random(height));
-    // pop();
