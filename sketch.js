@@ -1,6 +1,6 @@
 let objects = [];
 
-let song;
+// let song;
 let font;
 const fps = 60;
 const secondsPerFrame = 1 / fps;
@@ -19,7 +19,8 @@ let h = window.innerHeight;
 
 /* load song file before sketch */
 function preload() {
-    song = loadSound('Music/ThePlanetsDraft02.mp3');
+    // song = loadSound('Music/ThePlanetsDraft02.mp3');
+    font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
 }
 
 /* run once before sketch renders */
@@ -27,7 +28,7 @@ function setup() {
     createCanvas(w, h);
     font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
     resetSketch();
-    noLoop();
+    // noLoop();
 }
 
 /* run once every frame */
@@ -66,21 +67,20 @@ function draw() {
     //     noLoop();
 }
 
-function mousePressed() {
-    if (song.isPlaying()) {
-        song.stop();
-        noLoop();
-    } else {
-        loop();
-        song.play();
-        resetSketch();
-    }
-}
+// function mousePressed() {
+//     if (song.isPlaying()) {
+//         song.stop();
+//         noLoop();
+//     } else {
+//         loop();
+//         song.play();
+//         resetSketch();
+//     }
+// }
 
 function resetSketch() {
     frameRate(fps);
     angleMode(RADIANS);
-    font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
     
     /* offset all orbits */
     orbitOffsetX = 0;
