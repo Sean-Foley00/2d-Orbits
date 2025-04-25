@@ -198,9 +198,9 @@ class Body {
             default: textY = height + 100; // offscreen anything else
         }
 
-        fill(185); //TODO TEST
-        textFont(font); //TODO TEST
-        textSize(13); //TODO TEST
+        fill(185);
+        textFont(font);
+        textSize(13);
 
         let nameText = '> ' + this.name + '';
         nameText = nameText.padEnd(11, ' ');
