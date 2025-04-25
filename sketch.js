@@ -29,7 +29,6 @@ function setup() {
     createCanvas(w, h);
     frameRate(fps);
     angleMode(RADIANS);
-    // font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
     font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
     
     const halfw = width/2;
@@ -124,7 +123,7 @@ class Body {
 
         this.orbitSpeed = TWO_PI/(orbitSpeed * framesPerBeat); // degrees of rotation each frame
         this.angle = 0; // cumulative angle change
-        this.angle = random(TWO_PI); //TODO TESTING
+        // this.angle = random(TWO_PI); //TODO TESTING
 
         this.orbitCount = 0;
         this.totalTimeSeconds = this.calc_total_time_seconds();
