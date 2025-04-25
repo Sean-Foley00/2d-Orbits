@@ -1,5 +1,4 @@
 let objects = [];
-let stars = [];
 
 let song;
 let font;
@@ -18,14 +17,6 @@ let orbitOffsetY;
 let w = window.innerWidth;
 let h = window.innerHeight; 
 
-/* Media Wall Full Res*/
-// let w = 1920;
-// let h = 1200; 
-
-/* Media Wall Quarter Res*/
-// let w = 600;
-// let h = 960;
-
 /* load song file before sketch */
 function preload() {
     song = loadSound('Music/ThePlanetsDraft02.mp3');
@@ -34,35 +25,9 @@ function preload() {
 /* run once before sketch renders */
 function setup() {
     createCanvas(w, h);
-    frameRate(fps);
-    angleMode(RADIANS);
     font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
-    
-    const halfw = width/2;
-    const halfh = height/2;
-    
-    /* offset all orbits */
-    orbitOffsetX = 0;
-    orbitOffsetY = 0;
-
-    // "...,you must first create the universe."
-    // name, color, size, orbitW, orbitH, offsetX, offsetY, orbitSpeed
-    objects.push(new Body('Sol', color(255), 294.118, 0, 0, 0, 0, 0));
-    // Create objects - Inner System
-    objects.push(new Body('Mercury', color(200), 1, halfw * 0.05, halfh * 0.05, 0, 0, 1));
-    objects.push(new Body('Venus', color(200), 2.529, halfw * 0.075, halfh * 0.075, 0, 0, 2.5));
-    objects.push(new Body('Earth', color(200), 2.676, halfw * 0.1, halfh * 0.1, 0, 0, 4));
-    objects.push(new Body('Mars', color(200), 1.412, halfw * 0.125, halfh * 0.125, 0, 0, 7.75));
-    // Create Planets - Asteroid Belt
-    objects.push(new Body('4 Vesta', color(200), 0.108, halfw * 0.3, halfh * 0.3, 0, 0, 15));
-    objects.push(new Body('Ceres', color(200), 0.471, halfw * 0.325, halfh * 0.325, 0, 0, 19));
-    // Create Planets - Outer System
-    objects.push(new Body('Jupiter', color(200), 29.412, halfw * 0.45, halfh * 0.45, 0, 0, 47));
-    objects.push(new Body('Saturn', color(200), 24.706, halfw * 0.55, halfh * 0.55, 0, 0, 123));
-    objects.push(new Body('Uranus', color(200), 10, halfw * 0.65, halfh * 0.65, 0, 0, 351));
-    objects.push(new Body('Neptune', color(200), 9.1, halfw * 0.77, halfh * 0.77, 0, 0, 684));
-    // Create Planets - Kuiper Belt
-    objects.push(new Body('Pluto', color(200), 0.487, halfw * 0.95, halfh * 0.95, 0, 0, 1032.75));
+    resetSketch();
+    noLoop();
 }
 
 /* run once every frame */
@@ -101,20 +66,46 @@ function draw() {
     //     noLoop();
 }
 
-function keyPressed() {
-    if (key == 'space'){
-        if (song.isPlaying()) {
-            // .isPlaying() returns a boolean
-            song.stop();
-            noLoop();
-            background(255, 0, 0);
-          } else {
-            song.play();
-            background(0, 255, 0);
-            setup();
-          }
+function mousePressed() {
+    if (song.isPlaying()) {
+        song.stop();
+        noLoop();
+    } else {
+        loop();
+        song.play();
+        resetSketch();
     }
-  }
+}
+
+function resetSketch() {
+    frameRate(fps);
+    angleMode(RADIANS);
+    font = loadFont('fonts/BigBlueTerminal/BigBlueTerm437NerdFontMono-Regular.ttf');
+    
+    /* offset all orbits */
+    orbitOffsetX = 0;
+    orbitOffsetY = 0;
+
+    objects.length = 0;
+    // "...,you must first create the universe."
+    // name, color, size, orbitW, orbitH, offsetX, offsetY, orbitSpeed
+    objects.push(new Body('Sol', color(255), 294.118, 0, 0, 0, 0, 0));
+    // Create objects - Inner System
+    objects.push(new Body('Mercury', color(200), 1, width / 2 * 0.05, height / 2 * 0.05, 0, 0, 1));
+    objects.push(new Body('Venus', color(200), 2.529, width / 2 * 0.075, height / 2 * 0.075, 0, 0, 2.5));
+    objects.push(new Body('Earth', color(200), 2.676, width / 2 * 0.1, height / 2 * 0.1, 0, 0, 4));
+    objects.push(new Body('Mars', color(200), 1.412, width / 2 * 0.125, height / 2 * 0.125, 0, 0, 7.75));
+    // Create Planets - Asteroid Belt
+    objects.push(new Body('4 Vesta', color(200), 0.108, width / 2 * 0.3, height / 2 * 0.3, 0, 0, 15));
+    objects.push(new Body('Ceres', color(200), 0.471, width / 2 * 0.325, height / 2 * 0.325, 0, 0, 19));
+    // Create Planets - Outer System
+    objects.push(new Body('Jupiter', color(200), 29.412, width / 2 * 0.45, height / 2 * 0.45, 0, 0, 47));
+    objects.push(new Body('Saturn', color(200), 24.706, width / 2 * 0.55, height / 2 * 0.55, 0, 0, 123));
+    objects.push(new Body('Uranus', color(200), 10, width / 2 * 0.65, height / 2 * 0.65, 0, 0, 351));
+    objects.push(new Body('Neptune', color(200), 9.1, width / 2 * 0.77, height / 2 * 0.77, 0, 0, 684));
+    // Create Planets - Kuiper Belt
+    objects.push(new Body('Pluto', color(200), 0.487, width / 2 * 0.95, height / 2 * 0.95, 0, 0, 1032.75));
+}
 
 /* name    | Orbital Period n:Mercury | Diameter M | Distance M | Diameter Scale n:Mercury
    Sun     | 0                        | 1          | 0          | 294.118
